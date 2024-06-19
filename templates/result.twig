@@ -1,0 +1,18 @@
+{% include 'header.twig' with {'title': 'Wynik obliczeń'} %}
+
+<p>Odległość od siedziby Shoper.pl do podanego adresu wynosi {{ (distance / 1000)|round(2) }} km.</p>
+
+<h2>Historia obliczeń</h2>
+{% if calculations is not empty %}
+    <ul>
+    {% for calculation in calculations %}
+        <li>{{ calculation.calculation_date }}: {{ calculation.user_address }} - {{ (calculation.distance / 1000)|round(2) }} km</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak historii obliczeń.</p>
+{% endif %}
+
+<br><a href="index.php"><button>Powrót</button></a>
+
+{% include 'footer.twig' %}

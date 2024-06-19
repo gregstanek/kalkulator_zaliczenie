@@ -1,0 +1,20 @@
+{% include 'header.twig' with {'title': 'Wyliczanie odległości'} %}
+
+<form action="calculate.php" method="post">
+    <label for="address">Podaj adres:</label>
+    <input type="text" id="address" name="address" required>
+    <button type="submit">Wylicz odległość</button>
+</form>
+
+<h2>Historia obliczeń</h2>
+{% if calculations is not empty %}
+    <ul>
+    {% for calculation in calculations %}
+        <li>{{ calculation.calculation_date }}: {{ calculation.user_address }} - {{ (calculation.distance / 1000)|round(2) }} km</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak historii obliczeń.</p>
+{% endif %}
+
+{% include 'footer.twig' %}
